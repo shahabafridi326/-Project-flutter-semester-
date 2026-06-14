@@ -1,0 +1,280 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Student Profile App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
+    );
+  }
+}
+
+// Home Screen
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Student Profile"),
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 35,
+                    child: Icon(Icons.person, size: 40),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Shahab Ud Din",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text("Profile"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ProfileScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.school),
+              title: const Text("Education"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const EducationScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.code),
+              title: const Text("Skills"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SkillsScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.contact_mail),
+              title: const Text("Contact"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ContactScreen(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircleAvatar(
+                radius: 60,
+                child: Icon(Icons.person, size: 70),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Shahab Ud Din",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "BS Computer Science",
+                style: TextStyle(fontSize: 18),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text("View Profile"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const ProfileScreen(),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Profile Screen
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  Widget infoTile(String title, String value) {
+    return Card(
+      child: ListTile(
+        title: Text(title),
+        subtitle: Text(value),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Profile"),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(10),
+        children: [
+          infoTile("Name", "Shahab Ud Din"),
+          infoTile("Registration No", "FU-CS-2024-73"),
+          infoTile("Semester", "4th"),
+          infoTile("Section", "B"),
+          infoTile("Department", "Computer Science"),
+          infoTile("University", "FATA University"),
+          infoTile("Course", "Mobile Application"),
+        ],
+      ),
+    );
+  }
+}
+
+// Education Screen
+class EducationScreen extends StatelessWidget {
+  const EducationScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Education"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Card(
+          child: ListTile(
+            leading: const Icon(Icons.school, size: 40),
+            title: const Text("BS Computer Science"),
+            subtitle: const Text(
+              "FATA University\nSemester: 4th\nSection: B",
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Skills Screen
+class SkillsScreen extends StatelessWidget {
+  const SkillsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Skills"),
+      ),
+      body: ListView(
+        children: const [
+          ListTile(
+            leading: Icon(Icons.check_circle),
+            title: Text("Flutter"),
+          ),
+          ListTile(
+            leading: Icon(Icons.check_circle),
+            title: Text("Dart"),
+          ),
+          ListTile(
+            leading: Icon(Icons.check_circle),
+            title: Text("Programming Fundamentals"),
+          ),
+          ListTile(
+            leading: Icon(Icons.check_circle),
+            title: Text("Mobile App Development"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Contact Screen
+class ContactScreen extends StatelessWidget {
+  const ContactScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Contact"),
+      ),
+      body: ListView(
+        children: const [
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text("Shahab Ud Din"),
+          ),
+          ListTile(
+            leading: Icon(Icons.school),
+            title: Text("FATA University"),
+          ),
+          ListTile(
+            leading: Icon(Icons.book),
+            title: Text("Mobile Application"),
+          ),
+          ListTile(
+            leading: Icon(Icons.badge),
+            title: Text("FU-CS-2024-73"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
